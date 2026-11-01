@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planner | Aminatu Adamu</title>
+  <meta name="description" content="Academic planner of Aminatu Adamu.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .planner-form { display: grid; gap: 12px; max-width: 520px; }
+    .planner-form input, .planner-form select { padding: 12px; font-size: 1rem; border: 1px solid #bbb; border-radius: 8px; }
+    .planner-form button { cursor: pointer; border: none; font-size: 1rem; }
+    .task-list { list-style: none; padding: 0; margin-top: 24px; max-width: 520px; }
+    .task-list li { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+    .task-list .info { flex: 1; }
+    .task-list .done .info { text-decoration: line-through; opacity: 0.6; }
+    .task-list small { display: block; color: #666; }
+    .task-list button { background: none; border: 1px solid #c33; color: #c33; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">Aminatu Adamu</a>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="planner.html" class="active">Planner</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="hero-role">Academic planner</p>
+      <h1>Courses, deadlines and tasks</h1>
+      <p class="hero-text">Add your tasks, tick them when done, and delete them when you no longer need them.</p>
+    </section>
+
+    <section class="section">
+      <h2>Add a task</h2>
+      <form id="taskForm" class="planner-form">
+        <input type="text" id="taskName" placeholder="Task, e.g. Submit COS 106 project" required>
+        <select id="taskCourse">
+          <option>COS 102</option>
+          <option>COS 106</option>
+          <option>GST 122</option>
+          <option>Other</option>
+        </select>
+        <input type="date" id="taskDate" required>
+        <button type="submit" class="btn btn-primary">Add task</button>
+      </form>
+    </section>
+
+    <section class="section">
+      <h2>My tasks</h2>
+      <p id="emptyMsg">No tasks yet. Add your first one above.</p>
+      <ul id="taskList" class="task-list"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Aminatu Adamu. Bonny Island, Rivers State, Nigeria.</p>
+  </footer>
+
+  <script>
+    var tasks = [];
+    try { tasks = JSON.parse(localStorage.getItem("tasks")) || []; } catch (e) { tasks = []; }
+
+    var form = document.getElementById("taskForm");
+    var list = document.getElementById("taskList");
+    var emptyMsg = document.getElementById("emptyMsg");
+
+    function save() {
+      try { localStorage.setItem("tasks", JSON.stringify(tasks)); } catch (e) {}
+    }
+
+    function render() {
+      list.innerHTML = "";
+      emptyMsg.style.display = tasks.length ? "none" : "block";
+      tasks.forEach(function (t, i) {
+        var li = document.createElement("li");
+        if (t.done) li.className = "done";
+
+        var box = document.createElement("input");
+        box.type = "checkbox";
+        box.checked = t.done;
+        box.onchange = function () { tasks[i].done = box.checked; save(); render(); };
+
+        var info = document.createElement("div");
+        info.className = "info";
+        info.textContent = t.name;
+        var small = document.createElement("small");
+        small.textContent = t.course + " | Due: " + t.date;
+        info.appendChild(small);
+…
