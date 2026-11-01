@@ -136,6 +136,41 @@ main {
 /* ---------- Cards ---------- */
 .grid {
   display: grid;
+  /* ===== Royal blue and red theme ===== */
+:root {
+  --royal: #1f3fbf;
+  --royal-dark: #142a85;
+  --red: #e3243b;
+  --bg: #f2f5ff;
+}
+
+body { background: var(--bg); }
+
+/* Header */
+.site-header {
+  background: linear-gradient(90deg, var(--royal-dark), var(--royal));
+  border-bottom: 4px solid var(--red);
+}
+.nav-links a { transition: transform .2s, color .2s; }
+.nav-links a:hover { transform: translateY(-2px); color: #ffd6db; }
+.nav-links a.active { border-bottom-color: var(--red); }
+
+/* Headings */
+h1, h2, h3 { color: var(--royal-dark); }
+h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 5px;
+  background: var(--red);
+  border-radius: 5px;
+  margin-top: 8px;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #ffffff, #e4eaff);
+  b…
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 1rem;
 }
