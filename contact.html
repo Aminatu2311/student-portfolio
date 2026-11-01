@@ -41,11 +41,11 @@
       <div class="grid">
         <article class="card contact-card">
           <h3>Email</h3>
-          <p><a href="mailto:aminaummi111@gmail.com">aminaummi111@gmail.com</a></p>
+          <p><a href="aminaummi111L@gmail.com">aminaummi111@gmail.com</a></p>
         </article>
         <article class="card contact-card">
           <h3>Phone</h3>
-          <p><a href="tel:+2347065868966">+2347065868966</a></p>
+          <p><a href="tel:+2347065868966">+234 7065868966</a></p>
         </article>
         <article class="card contact-card">
           <h3>WhatsApp</h3>
@@ -61,19 +61,48 @@
         </article>
         <article class="card contact-card">
           <h3>Instagram</h3>
-          <p><a href="https://www.instagram.com/Amina Adam Hussain</a></p>
+          <p><a href="https://www.instagram.com/Amina Adam Husssain">@Amina Adam Hussain</a></p>
         </article>
         <article class="card contact-card">
           <h3>X (Twitter)</h3>
-          <p><a href="https://x.com/AMINATU ADAMU</a></p>
+          <p><a href="https://x.com/Amina Adamu">@Amina Adamu</a></p>
         </article>
         <article class="card contact-card">
           <h3>Facebook</h3>
-          <p><a href="https://www.facebook.com/YOUR-PROFILE">Amina Adam Hussain</a></p>
+          <p><a href="https://www.facebook.com/Amina Adam Hussain">Amina AdamHussaine</a></p>
         </article>
       </div>
-    </section
+    </section>
 
     <section class="section">
       <h2>Send a message</h2>
-      <form id="contactFo
+      <form id="contactForm" class="contact-form">
+        <input type="text" id="name" placeholder="Your name" required>
+        <input type="email" id="email" placeholder="Your email" required>
+        <textarea id="message" rows="5" placeholder="Your message" required></textarea>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+      <p id="formMsg"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Aminatu Adamu. Bonny Island, Rivers State, Nigeria.</p>
+  </footer>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = document.getElementById("name").value.trim();
+      var msg = document.getElementById("formMsg");
+      if (name.length < 2) {
+        msg.textContent = "Please enter your name.";
+        return;
+      }
+      msg.textContent = "Thank you, " + name + "! Your message has been received.";
+      this.reset();
+    });
+  </script>
+</body>
+</html
+     
